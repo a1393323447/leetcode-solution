@@ -1,5 +1,5 @@
-use std::collections::VecDeque;
 use crate::datastructure::union_find::quick_union::UnionFind;
+use std::collections::VecDeque;
 
 struct Solution;
 
@@ -39,16 +39,16 @@ impl Solution {
 
     pub fn valid_path2(n: i32, edges: Vec<Vec<i32>>, source: i32, destination: i32) -> bool {
         let mut uf = UnionFind::new(n as usize);
-        
+
         for edge in edges {
             let u = edge[0] as usize;
             let v = edge[1] as usize;
             uf.union(u, v);
         }
-        
+
         let s = source as usize;
         let d = destination as usize;
-        
+
         uf.find(s, d)
     }
 }

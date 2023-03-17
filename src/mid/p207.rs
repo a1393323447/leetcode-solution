@@ -25,8 +25,7 @@ impl Solution {
             }
         }
 
-        while !queue.is_empty() {
-            let cur = queue.pop_front().unwrap();
+        while let Some(cur) = queue.pop_front() {
             for &next in graph[cur].iter() {
                 degree[next] -= 1;
                 if degree[next] == 0 {

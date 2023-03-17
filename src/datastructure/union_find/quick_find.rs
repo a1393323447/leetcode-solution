@@ -18,7 +18,7 @@ impl UnionFind {
         }
 
         self.tree[root_p] = root_q;
-        
+
         for parent in &mut self.tree {
             if *parent == root_p {
                 *parent = root_q;

@@ -20,7 +20,7 @@ impl UnionFind {
         let root_q = self.get_root(q);
 
         if root_p == root_q {
-            return ;
+            return;
         }
 
         self.cnt -= 1;

@@ -9,11 +9,11 @@ impl Solution {
         for edge in edges {
             let p = edge[0] as usize;
             let q = edge[1] as usize;
-            
+
             let old_count = uf.count();
             uf.union(p, q);
             let cur_count = uf.count();
-            
+
             if old_count == cur_count {
                 res = edge;
             }

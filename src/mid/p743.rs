@@ -1,4 +1,5 @@
-use std::{collections::BinaryHeap, cmp::Reverse, marker::PhantomData};
+use crate::traites::ToReverse;
+use std::{cmp::Reverse, collections::BinaryHeap};
 
 struct Solution;
 
@@ -46,11 +47,14 @@ impl Solution {
         let mut unordered = BinaryHeap::with_capacity(n - 1);
         for (to, &weight) in graph[k].iter().enumerate() {
             let info = Info { to, weight };
-            unordered.push(Reverse(info));
+            unordered.push(info.rev());
         }
 
-
-        while let Some(Reverse(Info { to: q, weight: new_k_to_q_weight })) = unordered.pop() {
+        while let Some(Reverse(Info {
+            to: q,
+            weight: new_k_to_q_weight,
+        })) = unordered.pop()
+        {
             let old_k_to_q_weight = ordered[q];
             if old_k_to_q_weight < new_k_to_q_weight {
                 continue;
@@ -64,11 +68,21 @@ impl Solution {
                 let old_k_to_p_weight = ordered[p];
                 if new_k_to_p_weight < old_k_to_p_weight {
                     ordered[p] = new_k_to_p_weight;
-                    unordered.push(Reverse(Info { to: p, weight: new_k_to_p_weight }));
+                    unordered.push(
+                        Info {
+                            to: p,
+                            weight: new_k_to_p_weight,
+                        }
+                        .rev(),
+                    );
                 }
             }
         }
 
-        ordered[1..=n].into_iter().max().map(|&w| if w == IF { -1 } else { w }).unwrap()
+        ordered[1..=n]
+            .into_iter()
+            .max()
+            .map(|&w| if w == IF { -1 } else { w })
+            .unwrap()
     }
 }

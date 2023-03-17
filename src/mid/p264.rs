@@ -1,7 +1,5 @@
-use std::{
-    cmp::Reverse,
-    collections::{BinaryHeap, HashSet},
-};
+use crate::traites::ToReverse;
+use std::collections::{BinaryHeap, HashSet};
 
 struct Solution;
 
@@ -10,14 +8,14 @@ impl Solution {
     pub fn nth_ugly_number(n: i32) -> i32 {
         let n = n as usize;
         let factors = [2, 3, 5];
-        let mut seq: BinaryHeap<_> = vec![Reverse(1usize)].into_iter().collect();
+        let mut seq: BinaryHeap<_> = vec![1usize.rev()].into_iter().collect();
         let mut vis: HashSet<_> = vec![1usize].into_iter().collect();
         for _ in 1..n {
             let min = seq.pop().unwrap().0;
             for f in factors.clone() {
                 let value = f * min;
                 if vis.insert(value) {
-                    seq.push(Reverse(value));
+                    seq.push(value.rev());
                 }
             }
         }
