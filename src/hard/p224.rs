@@ -136,7 +136,6 @@ impl<'s> Lexer<'s> {
             self.chars.next();
         }
     }
-
 }
 
 const SYMBOL_TABLE: [Option<Token>; 128] = get_symbol_table();
@@ -210,8 +209,6 @@ impl BinExpr {
         todo!()
     }
 }
-
-
 
 impl Solution {
     pub fn calculate(s: String) -> i32 {

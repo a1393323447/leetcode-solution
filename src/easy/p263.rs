@@ -5,7 +5,7 @@ impl Solution {
         if n <= 0 {
             return false;
         }
-        
+
         let mut n = n;
 
         while n % 5 == 0 {

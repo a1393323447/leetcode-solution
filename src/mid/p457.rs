@@ -6,10 +6,10 @@ impl Solution {
         let mut vis = vec![false; len];
         for i in 0..len {
             if !vis[i] && Solution::walk(i, &nums, &mut vis) {
-               return true;
+                return true;
             }
         }
-        
+
         false
     }
 
@@ -20,15 +20,16 @@ impl Solution {
         let mut s = start;
 
         let sign = nums[s as usize].signum();
-        
+
         let mut flag = true;
         let next = |cur: usize| {
             let step = nums[cur] % len;
             ((cur as i32 + step + len) % len) as usize
         };
-        let mut update_flag = 
-        |f: usize| if flag {
-            flag = sign == nums[f].signum();
+        let mut update_flag = |f: usize| {
+            if flag {
+                flag = sign == nums[f].signum();
+            }
         };
 
         loop {
@@ -37,7 +38,7 @@ impl Solution {
             update_flag(f);
             vis[f] = true;
             f = next(f);
-            
+
             update_flag(f);
             vis[f] = true;
             f = next(f);
@@ -71,7 +72,7 @@ mod tests {
 
     #[test]
     fn test_case() {
-        let nums = vec![-1,-2,-3,-4,-5];
+        let nums = vec![-1, -2, -3, -4, -5];
         Solution::circular_array_loop(nums);
     }
 }

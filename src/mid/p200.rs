@@ -1,7 +1,7 @@
 struct Solution;
 
 const WATER: char = '0';
-const LAND:  char = '1';
+const LAND: char = '1';
 const FOUND: char = '2';
 
 impl Solution {
@@ -17,14 +17,11 @@ impl Solution {
                 }
             }
         }
-        
+
         res
     }
 
-    pub fn fill_island(
-        grid: &mut Vec<Vec<char>>,
-        start_pos: (usize, usize)
-    ) {
+    pub fn fill_island(grid: &mut Vec<Vec<char>>, start_pos: (usize, usize)) {
         let mut stack = vec![start_pos];
         while let Some((x, y)) = stack.pop() {
             if let Some(ch) = grid.get_mut(y).map(|v| v.get_mut(x)).flatten() {

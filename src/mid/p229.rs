@@ -45,7 +45,9 @@ impl Solution {
             } else {
                 for (idx, candidate) in candidates.iter_mut().enumerate() {
                     if candidate.update(no) {
-                        candidates[..idx].iter_mut().for_each(|c| { c.vote += 1; });
+                        candidates[..idx].iter_mut().for_each(|c| {
+                            c.vote += 1;
+                        });
                         break;
                     }
                 }
@@ -64,7 +66,11 @@ impl Solution {
             }
         }
 
-        candidates.into_iter().filter(|c| c.vote > (n as i32 / 3)).map(|c| c.no).collect()
+        candidates
+            .into_iter()
+            .filter(|c| c.vote > (n as i32 / 3))
+            .map(|c| c.no)
+            .collect()
     }
 }
 
@@ -74,6 +80,6 @@ mod tests {
 
     #[test]
     fn test_case() {
-        Solution::majority_element(vec![1,1,2,3,3]);
+        Solution::majority_element(vec![1, 1, 2, 3, 3]);
     }
 }
